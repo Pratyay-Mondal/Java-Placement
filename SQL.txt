@@ -1,0 +1,156 @@
+ONLINE COMPILER ----->     https://nextleap.app/online-compiler/sql-programming
+
+
+
+create table aot(
+  id int primary key,
+  stu_name varchar(10),
+  marks int,
+  city varchar(10)
+  );
+
+
+
+insert into aot
+(id, stu_name, marks, city)
+values
+(2, "Pratyay", 97, "Singur"),
+(3, "Somnath", 83, "Tarakeswar"),
+(4, "Ankita", 81, "Kolkata");
+
+
+select * from aot;
+
+
+select * from aot
+where marks >90;
+
+
+
+update aot
+set marks=82
+where marks=81;
+
+select * from aot;
+
+
+--- delete one row ---
+delete from aot
+where id=4;
+
+select * from aot;
+
+
+alter table aot
+add column grade varchar(4);
+
+
+insert into aot
+(id, stu_name, marks, city, grade)
+values
+(6, "Biresh", 78, "Berlin", 11),
+(8, "Harpret", 91, "Georgia", 14);
+
+select * from aot;
+
+
+
+insert into aot
+(id, stu_name, marks, city)
+values
+(9, "new", 83, "one"),
+(11, "meaw", 92, "two"),
+(12, "piu", 83, "three");
+
+
+select stu_name FROM aot
+ORDER BY id DESC
+LIMIT 1 OFFSET 1;
+
+SELECT stu_name FROM aot
+    ORDER by id DESC
+    LIMIT 1 OFFSET 1;
+
+
+
+---- deleting one column----
+ALTER TABLE aot
+DROP COLUMN city;
+
+select * from aot;
+
+
+
+drop table aot;
+
+
+
+----------------------------------------------------------------
+--- for making foreign key working ---
+
+
+insert into aot
+(id, stu_name, marks, city)
+values
+(5, "---", 0, "N/A"),
+(7, "---", 0, "N/A");
+
+---------------------------------
+
+
+create table iem(
+  id_new int,
+  name varchar(10),
+  marks int,
+  city varchar(10),
+  foreign key (id_new) references aot(id)
+  );
+
+
+insert into iem
+(id_new, name, marks, city)
+values
+(5, "Trisna", 86, "Sector V"),
+(7, "Rishita", 76, "New Town");
+
+
+
+select * from iem;
+
+
+----------------------------------------------------------------
+
+select * from iem
+left join aot
+on aot.stu_name = iem.id_new;
+
+select * from iem
+right join aot
+on aot.stu_name = iem.id_new;
+
+
+
+select * from aot
+left join iem
+on aot.stu_name = iem.id_new;
+
+select * from aot
+right join iem
+on aot.stu_name = iem.id_new;
+
+
+-------------------------------------------
+
+select * from aot
+left join iem
+on aot.stu_name = iem.id_new
+union
+select * from aot
+right join iem
+on aot.stu_name = iem.id_new;
+
+
+
+
+
+
